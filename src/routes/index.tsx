@@ -337,23 +337,8 @@ function ContactLink({
   return (
     <a
       href={href}
-      target={href.startsWith("http") ? "_blank" : undefined}
+      target={href.startsWith("http") ? "_top" : undefined}
       rel="noreferrer"
-      onClick={(event) => {
-        // Only intercept when embedded in the preview iframe: the sandbox
-        // can silently block target="_blank" popups. Open a new tab by hand
-        // (window.open returns null when the popup is blocked) and fall back
-        // to navigating the current frame so the link always does something.
-        // In a top-level window the native anchor behavior is fine.
-        if (window.top === window.self) return;
-        event.preventDefault();
-        const opened = window.open(href, "_blank");
-        if (opened) {
-          opened.opener = null;
-        } else {
-          window.location.assign(href);
-        }
-      }}
       className="flex items-center gap-3 rounded-lg border border-border bg-secondary/40 px-4 py-3 text-sm transition-colors hover:border-primary hover:text-primary"
     >
       <Icon className="size-4 text-primary" />
