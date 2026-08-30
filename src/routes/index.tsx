@@ -293,7 +293,7 @@ function Index() {
               href="mailto:mennaamrmohammed662005@gmail.com"
             />
             <ContactLink icon={Phone} label="01010438408" href="tel:+201010438408" />
-<ContactLink
+            <ContactLink
               icon={Linkedin}
               label="linkedin.com/in/menna-amr-2339a2327"
               href="https://www.linkedin.com/in/menna-amr-2339a2327/"
