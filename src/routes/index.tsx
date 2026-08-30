@@ -339,6 +339,16 @@ function ContactLink({
       href={href}
       target={href.startsWith("http") ? "_blank" : undefined}
       rel="noreferrer"
+      onClick={(event) => {
+        // Open in a new tab when possible; if the preview sandbox blocks
+        // popups (window.open returns null), navigate the current frame
+        // instead so the link always works.
+        event.preventDefault();
+        const opened = window.open(href, "_blank", "noopener,noreferrer");
+        if (!opened) {
+          window.location.assign(href);
+        }
+      }}
       className="flex items-center gap-3 rounded-lg border border-border bg-secondary/40 px-4 py-3 text-sm transition-colors hover:border-primary hover:text-primary"
     >
       <Icon className="size-4 text-primary" />
