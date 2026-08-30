@@ -340,12 +340,17 @@ function ContactLink({
       target={href.startsWith("http") ? "_blank" : undefined}
       rel="noreferrer"
       onClick={(event) => {
-        // Open in a new tab when possible; if the preview sandbox blocks
-        // popups (window.open returns null), navigate the current frame
-        // instead so the link always works.
+        // Only intercept when embedded in the preview iframe: the sandbox
+        // can silently block target="_blank" popups. Open a new tab by hand
+        // (window.open returns null when the popup is blocked) and fall back
+        // to navigating the current frame so the link always does something.
+        // In a top-level window the native anchor behavior is fine.
+        if (window.top === window.self) return;
         event.preventDefault();
-        const opened = window.open(href, "_blank", "noopener,noreferrer");
-        if (!opened) {
+        const opened = window.open(href, "_blank");
+        if (opened) {
+          opened.opener = null;
+        } else {
           window.location.assign(href);
         }
       }}
