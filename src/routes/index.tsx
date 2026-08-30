@@ -165,13 +165,20 @@ function Index() {
             Mansoura, Egypt
           </div>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button asChild size="lg" className="glow">
-              <a href="#projects">View projects</a>
-            </Button>
-            <Button asChild size="lg" variant="outline">
-              <a href="mailto:mennaamrmohammed662005@gmail.com">Get in touch</a>
-            </Button>
+            <a
+              href="#projects"
+              className={cn(buttonVariants({ size: "lg" }), "glow")}
+            >
+              View projects
+            </a>
+            <a
+              href="mailto:mennaamrmohammed662005@gmail.com"
+              className={cn(buttonVariants({ size: "lg", variant: "outline" }))}
+            >
+              Get in touch
+            </a>
           </div>
+
         </section>
 
         <section id="projects" className="py-16">
