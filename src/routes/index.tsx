@@ -15,7 +15,9 @@ import {
   Code2,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
 
 const TITLE = "Menna Amr — Computer Science Student & Data Engineering";
 const DESCRIPTION =
